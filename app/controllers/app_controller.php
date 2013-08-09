@@ -6,6 +6,7 @@
  * @author vladzur
  */
 class AppController extends Controller {
-
+	
 }
+
 ?>

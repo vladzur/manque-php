@@ -36,7 +36,7 @@ class _Router {
 			$_action = "index";
 		if ($_controller_name == "")
 			$_controller_name = "home";
-		$_controller_dir = WWW_ROOT . "/controllers/";
+		$_controller_dir = WWW_ROOT . "/app/controllers/";
 		$_controller = $_controller_dir . $_controller_name . ".php";
 		if (is_file($_controller)) {
 			include($_controller);

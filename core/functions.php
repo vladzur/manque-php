@@ -24,8 +24,8 @@
 function _getLang() {
 	foreach (explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']) as $lang) {
 		$pattern = '/^(?P<primarytag>[a-zA-Z]{2,8})' .
-			'(?:-(?P<subtag>[a-zA-Z]{2,8}))?(?:(?:;q=)' .
-			'(?P<quantifier>\d\.\d))?$/';
+				'(?:-(?P<subtag>[a-zA-Z]{2,8}))?(?:(?:;q=)' .
+				'(?P<quantifier>\d\.\d))?$/';
 
 		$splits = array();
 		if (preg_match($pattern, $lang, $splits)) {
@@ -43,8 +43,8 @@ function _getLang() {
 
 function __($my_text) {
 	$lang = _getLang();
-	if (file_exists(WWW_ROOT . "/view/locale/" . $lang . "/default.mo")) {
-		$gettext_cache = new gettext_reader(new CachedFileReader(WWW_ROOT . "/view/locale/" . $lang . "/default.mo"));
+	if (file_exists(WWW_ROOT . "/app/view/locale/" . $lang . "/default.mo")) {
+		$gettext_cache = new gettext_reader(new CachedFileReader(WWW_ROOT . "/app/view/locale/" . $lang . "/default.mo"));
 	}
 	if (is_null($gettext_cache)) {
 		return $my_text;
@@ -90,4 +90,5 @@ function configure($Item, $value) {
 			break;
 	}
 }
+
 ?>

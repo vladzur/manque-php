@@ -1,45 +1,53 @@
 <?php
 
-/**
+/*
  *      Copyright 2010 vladzur
- *
+ *      
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
  *      the Free Software Foundation; either version 3 of the License, or
  *      (at your option) any later version.
- *
+ *      
  *      This program is distributed in the hope that it will be useful,
  *      but WITHOUT ANY WARRANTY; without even the implied warranty of
  *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *      GNU General Public License for more details.
- *
+ *      
  *      You should have received a copy of the GNU General Public License
  *      along with this program; if not, write to the Free Software
  *      Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  *      MA 02110-1301, USA.
  */
-class Session {
 
-	public $session_name = _SESSION_NAME_;
+/*
+ * Error debug:
+ * 0 = Turn off all error reporting
+ * 1 = Report simple running errors (E_ERROR | E_WARNING | E_PARSE)
+ * 2 = Report all php errors (E_ALL)
+ * 
+ */
+configure('Debug', 1);
 
-	function __construct() {
-		session_name($this->session_name);
-		session_start();
-	}
+/*
+ * Database config
+ * Host, Username, Password and Database must be defined here
+ */
+configure('DB', array('host' => 'localhost',
+	'user' => 'dbuser',
+	'pass' => 'dbpassword',
+	'dbase' => 'dbasename'
+		)
+);
 
-	function write($name = null, $value = null) {
-		$_SESSION[$name] = $value;
-	}
+/*
+ * Session name
+ * Define the session name to be used on this entire session
+ */
+configure('SessionName', 'Manque-PHP');
 
-	function read($name = null) {
-		$out = $_SESSION[$name];
-		return $out;
-	}
-
-	function start() {
-		session_start();
-	}
-
-}
-
+/*
+ * Security passphrase
+ * Set your security passphrase for encryption routines.
+ */
+configure('PassPhrase', '09EqC4eU8OjI90LmzWed341Qws6V0OpikL98');
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  *      Copyright 2010 vladzur
  *      
@@ -31,13 +32,13 @@ configure('Debug', 1);
  * Database config
  * Host, Username, Password and Database must be defined here
  */
-configure('DB', array('host'=>'localhost',
-					'user'=>'dbuser',
-					'pass'=>'dbpassword',
-					'dbase'=>'dbasename'
-					)
-		);
-		
+configure('DB', array('host' => 'localhost',
+	'user' => 'dbuser',
+	'pass' => 'dbpassword',
+	'dbase' => 'dbasename'
+		)
+);
+
 /*
  * Session name
  * Define the session name to be used on this entire session
@@ -49,6 +50,4 @@ configure('SessionName', 'Manque-PHP');
  * Set your security passphrase for encryption routines.
  */
 configure('PassPhrase', '09EqC4eU8OjI90LmzWed341Qws6V0OpikL98');
-
-
 ?>

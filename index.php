@@ -1,7 +1,7 @@
 <?php
 
 /**
- *      Copyright 2009 vladzur
+ *      Copyright 2013 vladzur
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -38,8 +38,8 @@ if (!isset($_global)) {
 include(WWW_ROOT . "/core/i18n/streams.php");
 include(WWW_ROOT . "/core/i18n/gettext.php");
 include(WWW_ROOT . "/core/functions.php");
-require_once(WWW_ROOT . "/core/configure/config.php");
-function __autoload($className = null) {
+include(WWW_ROOT . "/app/configure/config.php");
+function __autoinclude($className = null) {
 	require_once(WWW_ROOT . "/core/$className");
 }
 
@@ -47,10 +47,10 @@ $files = scandir(WWW_ROOT . "/core/");
 
 foreach ($files as $file) {
 	if (stristr($file, ".php")) {
-		__autoload($file);
+		__autoinclude($file);
 	}
 }
-require_once(WWW_ROOT . "/controllers/app_controller.php");
+require_once(WWW_ROOT . "/app/controllers/app_controller.php");
 $url = $_GET['url'];
 if (empty($url))
 	$url = "home";

@@ -20,12 +20,13 @@
  */
 class Model {
 
-	var $link = null;
+	public $link = null;
+
 	/**
 	 *
 	 * @var string $pk Primary key name
 	 */
-	var $pk = 'id';
+	public $pk = 'id';
 
 	/**
 	 * Class constructor
@@ -55,7 +56,7 @@ class Model {
 	 * @param string $ssql SQL query
 	 * @return mixed resultset
 	 */
-	function query($ssql=null) {
+	function query($ssql = null) {
 		if ($result = mysql_query($ssql)) {
 			while ($row = mysql_fetch_assoc($result)) {
 				$output[] = $row;
@@ -82,22 +83,30 @@ class Model {
 		foreach ($campos as $campo) {
 			for ($i = 0; $i < count($desc); $i++) {
 				if ($campo == $desc[$i]['Field']
-					)$tipo = $desc[$i]['Type'];
+				)
+					$tipo = $desc[$i]['Type'];
 			}
 			if (stristr($tipo, "varchar")
-				)$value.="\"" . $data[$campo] . "\", ";
+			)
+				$value.="\"" . $data[$campo] . "\", ";
 			if (stristr($tipo, "text")
-				)$value.="\"" . $data[$campo] . "\", ";
+			)
+				$value.="\"" . $data[$campo] . "\", ";
 			if (stristr($tipo, "int")
-				)$value.=$data[$campo] . ", ";
+			)
+				$value.=$data[$campo] . ", ";
 			if (stristr($tipo, "float")
-				)$value.=$data[$campo] . ", ";
+			)
+				$value.=$data[$campo] . ", ";
 			if (stristr($tipo, "double")
-				)$value.=$data[$campo] . ", ";
+			)
+				$value.=$data[$campo] . ", ";
 			if (stristr($tipo, "blob")
-				)$value.="\"" . $data[$campo] . "\", ";
+			)
+				$value.="\"" . $data[$campo] . "\", ";
 			if (stristr($tipo, "date")
-				)$value.="\"" . $data[$campo] . "\", ";
+			)
+				$value.="\"" . $data[$campo] . "\", ";
 			$field.=$campo . ", ";
 		}
 		$field = trim($field, ", ");
@@ -119,16 +128,21 @@ class Model {
 		foreach ($campos as $campo) {
 			for ($i = 0; $i < count($desc); $i++) {
 				if ($campo == $desc[$i]['Field']
-					)$tipo = $desc[$i]['Type'];
+				)
+					$tipo = $desc[$i]['Type'];
 			}
 			if (stristr($tipo, "varchar")
-				)$value.=$campo . "='" . $data[$campo] . "', ";
+			)
+				$value.=$campo . "='" . $data[$campo] . "', ";
 			if (stristr($tipo, "text")
-				)$value.=$campo . "='" . $data[$campo] . "', ";
+			)
+				$value.=$campo . "='" . $data[$campo] . "', ";
 			if (stristr($tipo, "int")
-				)$value.=$campo . "=" . $data[$campo] . ", ";
+			)
+				$value.=$campo . "=" . $data[$campo] . ", ";
 			if (stristr($tipo, "blob")
-				)$value.=$campo . "='" . $data[$campo] . "', ";
+			)
+				$value.=$campo . "='" . $data[$campo] . "', ";
 		}
 
 		$value = trim($value, ", ");
@@ -171,12 +185,7 @@ class Model {
 	 * @return string UUID
 	 */
 	function generateUUID() {
-		return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-			mt_rand(0, 0xffff), mt_rand(0, 0xffff),
-			mt_rand(0, 0xffff),
-			mt_rand(0, 0x0fff) | 0x4000,
-			mt_rand(0, 0x3fff) | 0x8000,
-			mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+		return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000, mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
 		);
 	}
 
@@ -230,4 +239,5 @@ class Model {
 	}
 
 }
+
 ?>

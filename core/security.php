@@ -21,7 +21,7 @@
 class Security {
 
 	// Security key-phrase, use your own.
-	var $key = _PASS_PHRASE_;
+	public $key = _PASS_PHRASE_;
 
 	function encrypt($string = null) {
 		$string = $this->XOREncrypt($string, $this->key);
@@ -46,4 +46,5 @@ class Security {
 	}
 
 }
+
 ?>

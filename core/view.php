@@ -20,7 +20,7 @@
  */
 class View {
 
-	var $Captcha_lenght = 5;
+	public $Captcha_lenght = 5;
 
 	/*
 	 * Show a view file includding layout file and data
@@ -45,4 +45,5 @@ class View {
 	}
 
 }
+
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  *      Copyright 2010 vladzur
  *
@@ -20,43 +21,45 @@
 
 class Html {
 
-	function css($sheet){
-		$output = "<link rel=\"stylesheet\" href=\"".WWW."/css/$sheet.css\" type=\"text/css\">\n";
+	function css($sheet) {
+		$output = "<link rel=\"stylesheet\" href=\"" . WWW . "/css/$sheet.css\" type=\"text/css\">\n";
 		return $output;
 	}
 
-	function link($name = null,$atributes = array()){
+	function link($name = null, $atributes = array()) {
 
-		if(isset($atributes['url']['controller'])){
-			$url .= "/".$atributes['url']['controller'];
+		if (isset($atributes['url']['controller'])) {
+			$url .= "/" . $atributes['url']['controller'];
 		}
-		if(isset($atributes['url']['action'])){
-			$url .= "/".$atributes['url']['action'];
+		if (isset($atributes['url']['action'])) {
+			$url .= "/" . $atributes['url']['action'];
 		}
-		if(isset($atributes['val'])){
-			$url .= "/".implode("/", $atributes['val']);
+		if (isset($atributes['val'])) {
+			$url .= "/" . implode("/", $atributes['val']);
 		}
 
 		return "<a href=\"$url\">$name</a>";
 	}
 
-	function image($file = null, $atributes = array()){
-		if(!isset($atributes['title'])){
+	function image($file = null, $atributes = array()) {
+		if (!isset($atributes['title'])) {
 			$atributes['title'] = 'image';
 		}
-		if(!isset($atributes['alt'])){
+		if (!isset($atributes['alt'])) {
 			$atributes['alt'] = $file;
 		}
 		$tags = null;
-		foreach($atributes as $label=>$value){
+		foreach ($atributes as $label => $value) {
 			$tags .= " $label=\"$value\"";
 		}
 		return "<img src=\"$file\"$tags>";
 	}
 
-	function javascript($file){
-		$output = "<script type=\"text/javascript\" src=\"".WWW."/js/$file\"></script>\n";
+	function javascript($file) {
+		$output = "<script type=\"text/javascript\" src=\"" . WWW . "/js/$file\"></script>\n";
 		return $output;
 	}
+
 }
+
 ?>

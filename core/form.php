@@ -88,5 +88,7 @@ class Form {
 		$output .= "</form>\n";
 		return $output;
 	}
+
 }
+
 ?>
