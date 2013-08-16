@@ -24,6 +24,7 @@ class Controller {
 	public $models = array();
 	public $helpers = array('Html', 'Form');
 	public $data;
+	public $vendors = array();
 
 	function __construct() {
 		$this->View = new View();
@@ -31,6 +32,7 @@ class Controller {
 		$this->Security = new Security();
 		$this->data = $_POST['data'];
 		$this->_loadModels($this->models);
+		$this->_loadVendors($this->vendors);
 	}
 
 	/**
@@ -117,6 +119,27 @@ class Controller {
 				if (file_exists($model_file)) {
 					require_once $model_file;
 					$this->$model = new $model();
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Loads models designed by $models array.
+	 *
+	 * @param array $models
+	 * @return boolean
+	 */
+	function _loadVendors($vendors = array()) {
+		if (!empty($vendors)) {
+			foreach ($vendors as $class => $file) {
+				$vendor_file = WWW_ROOT . "/app/vendors/$file";
+				if (file_exists($vendor_file)) {
+					include_once($vendor_file);
+					$this->$class = new $class();
 				}
 			}
 			return true;

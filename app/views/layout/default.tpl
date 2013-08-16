@@ -1,31 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML>
 <html>
-    <head>
+	<head>
 		<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Manque-PHP - PHP Framework</title>
-		<?php echo $html->css('estilo');?>
-    </head>
-    <body>
-		<div class="contenedor">
-			<div class="headder">
-				<h1>Bienvenido a Manque-PHP Framework</h1>
-			</div>
-			<div class="menu">
-				<span>Puede incluir algo aquí</span>
-			</div>
-			<div class="cuerpo">
-				<?php echo $content_here; ?>
-			</div>
-			<div class="footer">
-				<p>
-					<a href="http://validator.w3.org/check?uri=referer">
-						<img src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01 Strict" height="31" width="88"></a>
-					<a href="http://jigsaw.w3.org/css-validator/check/referer">
-						<img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="¡CSS Válido!">
-					</a>
-					<br>
-					Manque-php &copy;2013<br>By Vladimir Zurita M.</p>
-			</div>
+		<?php echo $html->css(array('bootstrap', 'bootstrap-responsive')); ?>
+
+		<link rel="canonical" href="http://www.example.com" />
+		<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+		</script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<?php echo $content_here; ?>
 		</div>
     </body>
 </html>

@@ -19,51 +19,72 @@
  *      MA 02110-1301, USA.
  */
 class Model {
+	
+	public $db;
 
-	public $link = null;
-
-	/**
-	 *
-	 * @var string $pk Primary key name
-	 */
-	public $pk = 'id';
-
-	/**
-	 * Class constructor
-	 */
-	function __construct() {
-		$this->connect();
-	}
+	public $config = array(
+		'driver' => 'mysql',
+		'host' => '192.168.1.53',
+		'database' => 'cacert',
+		'user' => 'cacert',
+		'password' => 'cacert.asdwsx'
+	);
 
 	/**
-	 * Connect database
+	 * Constructor de la clase Database
+	 * @param array $config Configuración para conectar la base de datos. e:
+	 * 		'driver' => 'mysql',
+	 * 		'host' => '127.0.0.1',
+	 * 		'database' => 'mi_base',
+	 * 		'user' => 'usuario',
+	 * 		'password' => 'contraseña'
 	 */
-	function connect() {
-
-		$this->link = mysql_connect(_HOST_, _USER_, _PWD_);
-		mysql_select_db(_DB_, $this->link);
-	}
-
-	/**
-	 * Close database connection
-	 */
-	function close() {
-		mysql_close($this->link);
-	}
-
-	/**
-	 * Executes a query
-	 * @param string $ssql SQL query
-	 * @return mixed resultset
-	 */
-	function query($ssql = null) {
-		if ($result = mysql_query($ssql)) {
-			while ($row = mysql_fetch_assoc($result)) {
-				$output[] = $row;
-			}
-			return $output;
+	public function __construct($config = null) {
+		if (isset($config) && is_array($config)) {
+			$this->config = $config;
 		}
-		return false;
+	}
+
+	/**
+	 * Realiza la conexión a la base de datos
+	 * @return boolean
+	 */
+	public function connect() {
+		if (isset($this->config) && is_array($this->config)) {
+			$dsn = "{$this->config['driver']}:dbname={$this->config['database']};host={$this->config['host']}";
+			try {
+				$this->db = new PDO($dsn, $this->config['user'], $this->config['password']);
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				exit;
+				return false;
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Ejecuta una sentencia SQL
+	 * @param string $sql Sentencia SQL
+	 * @return mixed
+	 */
+	public function query($sql) {
+		try {
+			$result = $this->db->query($sql);
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			exit;
+			return false;
+		}
+		$resultset = array();
+		if ($result) {
+			foreach ($result as $row) {
+				$resultset[] = $row;
+			}
+		}
+		return empty($resultset) ? false : $resultset;
 	}
 
 	/**
@@ -151,42 +172,13 @@ class Model {
 		return $this->query($sql);
 	}
 
-	/**
-	 * Deletes data from a table
-	 * @param string $tabla Table name
-	 * @param string $condicion Delete conditions
-	 * @return mixed Resultset
-	 */
-	function delete($tabla, $condicion) {
-		$sql = "DELETE " . $tabla . " WHERE " . $condicion;
-		if ($result = mysql_query($sql)) {
-			$this->close();
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Describes a table structure
-	 * @param string $tabla Table name
-	 * @return mixed Resultset
-	 */
-	function describe_tabla($tabla) {
-		$sql = "DESCRIBE " . $tabla;
-		$res = mysql_query($sql);
-		while ($field = mysql_fetch_assoc($res)) {
-			$output[] = array('Field' => $field['Field'], 'Type' => $field['Type']);
-		}
-		return $output;
-	}
-
+	
 	/**
 	 * Generates an universal unique identifier
 	 * @return string UUID
 	 */
 	function generateUUID() {
-		return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000, mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
-		);
+		return sprintf('%04x%04x%04x%04x%04x%04x%04x%04x', mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000, mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
 	}
 
 	/**

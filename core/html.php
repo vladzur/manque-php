@@ -22,7 +22,14 @@
 class Html {
 
 	function css($sheet) {
-		$output = "<link rel=\"stylesheet\" href=\"" . WWW . "/css/$sheet.css\" type=\"text/css\">\n";
+		if (is_array($sheet)) {
+			$output = "";
+			foreach ($sheet as $css) {
+				$output .= "<link rel=\"stylesheet\" href=\"css/$css.css\" type=\"text/css\">\n";
+			}
+		} else {
+			$output = "<link rel=\"stylesheet\" href=\"" . WWW . "css/$sheet.css\" type=\"text/css\">\n";
+		}
 		return $output;
 	}
 
@@ -56,7 +63,7 @@ class Html {
 	}
 
 	function javascript($file) {
-		$output = "<script type=\"text/javascript\" src=\"" . WWW . "/js/$file\"></script>\n";
+		$output = "<script type=\"text/javascript\" src=\"js/$file\"></script>\n";
 		return $output;
 	}
 
