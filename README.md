@@ -1,4 +1,12 @@
-manque-php
-==========
+Manque-PHP
+=======
 
-This small framework is intended to serve as a teaching about the MVC architecture
+Manque-PHP is a very small PHP framework
+Objectives
+
+* Create an usable framework
+* Support the MVC software architecture
+* Be an educational tool for programming teaching.
+
+Vladimir Zurita
+vladzur@gmail.com

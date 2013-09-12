@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TyniMVC\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-22 14:20-0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Vladimir Zurita <vladzur@gmail.com>\n"
+"Language-Team: Yo <vladzur@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: /home/vladzur/workspace/TyniMVC/view/\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: usuario\n"
+"X-Poedit-SearchPath-1: layout\n"
+
+#: usuario/index.tpl:5
+msgid "Name"
+msgstr "Nombre"
+
+#: usuario/index.tpl:6
+#: usuario/add.tpl:6
+#: usuario/view.tpl:6
+msgid "e-mail"
+msgstr "correo-e"
+
+#: usuario/index.tpl:7
+msgid "Actions"
+msgstr "Acciones"
+
+#: usuario/index.tpl:13
+msgid "View"
+msgstr "Ver"
+
+#: usuario/add.tpl:3
+msgid "Profile"
+msgstr "Perfil"
+
+#: usuario/add.tpl:4
+#: usuario/view.tpl:4
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: usuario/add.tpl:5
+msgid "Password"
+msgstr "Contraseña"
+
+#: usuario/add.tpl:7
+msgid "Submit"
+msgstr "Enviar"
+
+#: usuario/view.tpl:2
+msgid "View user"
+msgstr "Ver usuario"
+
+#: layout/default.tpl:15
+msgid "Home"
+msgstr "Inicio"
+
+#: layout/default.tpl:15
+msgid "About"
+msgstr "Nosotros"
+
